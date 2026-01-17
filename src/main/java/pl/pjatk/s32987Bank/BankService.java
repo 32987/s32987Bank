@@ -14,7 +14,6 @@ public class BankService {
         this.transactionStorage = transactionStorage;
     }
 
-    //klient
     public void displayUserDataById(int userId) {
         if (doesUserExist(userId)) {
             System.out.println("Uzytkownik: " + userStorage.getUserById(userId));
@@ -29,15 +28,15 @@ public class BankService {
         });
     }
 
-    public void registerUser(BigDecimal saldo) {
-        User newUser = new User(userStorage.getNextUserId(), saldo);
+    public void registerUser(BigDecimal balance) {
+        User newUser = new User(userStorage.getNextUserId(), balance);
         userStorage.addUser(newUser);
         System.out.println("Uzytkownik zarejestrowany pomyslnie: " + newUser);
     }
 
     public Transaction createTransfer(int userId, BigDecimal amount) {
         if (doesUserExist(userId)) {
-            if (userStorage.getUserBalanceById(userId).doubleValue() >= amount.doubleValue()) {
+            if (userStorage.getUserBalanceById(userId).compareTo(amount) >= 0)  {
                 userStorage.subtractFromUserBalance(userId, amount);
                 System.out.println("Przelew utworzono pomyslnie.");
 

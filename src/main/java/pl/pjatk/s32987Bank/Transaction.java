@@ -19,6 +19,8 @@ public class Transaction {
         this.balanceAfterTransaction = balanceAfterTransaction;
     }
 
+
+
     public int getId() {
         return id;
     }
