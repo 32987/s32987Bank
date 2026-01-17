@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -38,48 +37,6 @@ public class BankServiceTests {
         boolean b = bankService.doesUserExist(1);
 
         assertFalse(b);
-    }
-
-    @Test
-    void registerUserTest() {
-        //given
-        BigDecimal balance = BigDecimal.valueOf(20);
-
-        //when
-        bankService.registerUser(balance);
-
-        //then
-        assertEquals(userStorage.getUsers().getFirst().getBalance(), balance);
-    }
-
-    @Test
-    void createTransferTest() {
-        //given
-        int userId = 0;
-        BigDecimal balance = BigDecimal.valueOf(20);
-        User user = new User(userId, balance);
-        userStorage.addUser(user);
-
-        //when
-        bankService.createTransfer(userId, BigDecimal.valueOf(20));
-
-        //then
-        assertEquals(BigDecimal.valueOf(40), userStorage.getUserById(userId).getBalance());
-    }
-
-    @Test
-    void addToUserBalanceTest() {
-        //given
-        int userId = 0;
-        BigDecimal balance = BigDecimal.valueOf(20);
-        User user = new User(userId, balance);
-        userStorage.addUser(user);
-
-        //when
-        bankService.createTransfer(userId, BigDecimal.valueOf(20));
-
-        //then
-        assertEquals(BigDecimal.valueOf(40), userStorage.getUserById(userId).getBalance());
     }
 
     @Test

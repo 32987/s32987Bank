@@ -14,11 +14,13 @@ public class BankService {
         this.transactionStorage = transactionStorage;
     }
 
-    public void displayUserDataById(int userId) {
+    public boolean displayUserDataById(int userId) {
         if (doesUserExist(userId)) {
             System.out.println("Uzytkownik: " + userStorage.getUserById(userId));
+            return true;
         } else {
             System.out.println("Podany uzytkownik nie istnieje.");
+            return false;
         }
     }
 
